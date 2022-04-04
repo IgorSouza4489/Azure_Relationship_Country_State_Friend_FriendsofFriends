@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AzureAt.Models.Estado>
+
+@{
+    ViewData["Title"] = "Estados";
+}
+
+<h1>Estados</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <strong>Estado  :                     @Html.DisplayFor(modelItem => item.Nome)</strong>
+
+        </div>
+        <div class="card-body">
+            <div>
+                Foto :                    @Html.DisplayFor(modelItem => item.Foto)
+
+            </div>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EstadoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EstadoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EstadoId">Delete</a>
+            </td>
+        </div>
+    </div>
+}

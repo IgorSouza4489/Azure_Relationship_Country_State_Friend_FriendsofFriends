@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AzureAt.Models.Amigo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Amigos</h1>
+
+<a asp-action="Create" class="btn btn-sm btn-secondary">
+    Create New
+</a>
+<br />
+<br />
+
+
+
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+
+        <div class="card-header">
+            <strong>Nome  :                @Html.DisplayFor(modelItem => item.Nome)</strong>
+        </div>
+        <div class="card-body">
+            <div>
+                Sobrenome :                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </div>
+            <div>
+                Foto :                    <img src=" @Html.DisplayFor(model => item.Foto)" style="width:50px" />
+
+            </div>
+            <div>
+                Email :                    @Html.DisplayFor(modelItem => item.Email)
+            </div>
+            <div>
+                Telefone :                 @Html.DisplayFor(modelItem => item.Telefone)
+            </div>
+            <div>
+                Aniversário :              @Html.DisplayFor(modelItem => item.Aniversario)
+
+            </div>
+            <div>
+                Estado de Origem :         @Html.DisplayFor(modelItem => item.EstadoOrigem)
+            </div>
+            <div>
+                Pais de Origem :           @Html.DisplayFor(modelItem => item.PaisOrigem)
+            </div>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Amiguinhos" asp-route-id="@item.Id">Amiguinhos</a> |
+                <a asp-controller="Amiguinhos" asp-action="CreateAmiguinho" asp-route-id="@item.Id">Adicionar amiguinho</a> |
+
+            </td>
+        </div>
+    </div>
+}

@@ -1,0 +1,221 @@
+CREATE PROCEDURE [dbo].[AtualizarAmigo]
+	@Id int,
+	@Nome varchar(50),
+	@Foto varchar(1000),
+	@Sobrenome varchar(50),
+	@Email varchar(50),
+	@Aniversario date,
+	@Telefone varchar(50),
+	@EstadoOrigem varchar(50),
+	@PaisOrigem varchar(50)
+
+AS
+	UPDATE Amigo
+		SET Nome = @Nome,
+			Foto = @Foto,
+			Sobrenome = @Sobrenome,
+			Email = @Email,
+			Telefone = @Telefone,
+			Aniversario = @Aniversario,
+			EstadoOrigem = @EstadoOrigem,
+			PaisOrigem = @PaisOrigem
+			
+			WHERE Id = @Id
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[AtualizarEstado]
+	@EstadoId int,
+	@Nome varchar(50),
+	@Foto varchar(1000),
+	@PaisOrigem varchar(50)
+
+AS
+	UPDATE Estados
+		SET Nome = @Nome,
+			Foto = @Foto,		
+			PaisOrigem = @PaisOrigem
+			
+			WHERE EstadoId = @EstadoId
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[AtualizarPais]
+	@PaisId int,
+	@Nome varchar(50),
+	@Foto varchar(1000)
+	
+AS
+	UPDATE Pais
+		SET Nome = @Nome,
+			Foto = @Foto
+						
+			WHERE PaisId = @PaisId
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[CadastrarAmigo]
+	@Nome varchar(50),
+	@Foto varchar(1000),
+	@Sobrenome varchar(50),
+	@Email varchar(50),
+	@Telefone varchar(50),
+	@Aniversario date,
+	@EstadoOrigem varchar(50),
+	@PaisOrigem varchar(50)
+AS
+	INSERT INTO Amigo (Nome, Foto, Sobrenome, Email, Telefone, Aniversario, EstadoId, EstadoOrigem, PaisOrigem) VALUES (@Nome, @Foto, @Sobrenome, @Email, @Telefone, @Aniversario, (SELECT EstadoId FROM Estados WHERE @EstadoOrigem = Nome), @EstadoOrigem, @PaisOrigem)
+RETURN
+GO
+CREATE PROCEDURE [dbo].[CadastrarAmiguinho]
+	@Id int,
+	@Nome varchar(50),
+	@Sobrenome varchar(50),
+	@Foto varchar(50),
+	@Email varchar(50),
+	@Telefone varchar(50),
+	@EstadoOrigem varchar(50),
+	@PaisOrigem varchar(50)
+AS
+	INSERT INTO Amiguinhos (Nome, Sobrenome, Foto, Email, Telefone, EstadoOrigem, PaisOrigem, Id) VALUES (@Nome, @Sobrenome, @Foto , @Email, @Telefone, @EstadoOrigem, @PaisOrigem, @Id)
+RETURN 0
+GO
+
+CREATE PROCEDURE [dbo].[CadastrarEstado]
+	@Foto varchar(1000),
+    @Nome varchar(50),
+    @PaisOrigem varchar(50)
+AS
+    INSERT INTO Estados (Foto, Nome, PaisOrigem, PaisId) 
+    VALUES (@Foto, @Nome, @PaisOrigem, (SELECT PaisId FROM Pais WHERE @PaisOrigem = Nome))
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[CadastrarPais]
+	@Nome varchar(50),
+	@Foto varchar(1000)
+
+AS
+	INSERT INTO Pais (Nome, Foto) VALUES (@Nome, @Foto)
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[ConsultarAmigo]
+	@Id int
+AS
+	SELECT Id, Nome, Foto ,Sobrenome, Email, Telefone, Aniversario, EstadoOrigem, PaisOrigem FROM Amigo
+	WHERE Id = @Id
+RETURN 0
+GO
+
+
+
+CREATE PROCEDURE [dbo].[ConsultarAmigos]
+AS
+	SELECT Id, Nome, Sobrenome, Email, Telefone, Aniversario, Foto, EstadoOrigem, PaisOrigem FROM Amigo
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[ConsultarAmiguinhos]
+AS
+	SELECT * FROM Amiguinhos
+RETURN
+GO
+
+
+CREATE PROCEDURE [dbo].[ConsultarEstados]
+AS
+	SELECT EstadoId, Nome, Foto, PaisOrigem FROM Estados
+RETURN 0
+GO
+
+
+
+CREATE PROCEDURE [dbo].[ConsultarPais]
+AS
+	SELECT * FROM Pais
+RETURN
+GO
+CREATE PROCEDURE [dbo].[ConsultarPaisDetails]
+	@PaisId int
+AS
+	SELECT PaisId, Nome, Foto FROM Pais
+	WHERE PaisId = @PaisId
+RETURN 0
+GO
+CREATE PROCEDURE [dbo].[ContarAmigos]
+AS
+	SELECT COUNT(Id)
+FROM Amigo;
+RETURN 0
+GO
+CREATE PROCEDURE [dbo].[ContarPais]
+AS
+	SELECT COUNT(PaisId)
+FROM Pais;
+RETURN 0
+
+GO
+
+
+
+CREATE PROCEDURE [dbo].[DeletarAmigo]
+	@Id int
+AS
+	DELETE FROM Amigo
+	WHERE Id = @Id
+RETURN 0
+GO
+
+CREATE PROCEDURE [dbo].[DeletarAmiguinho]
+	@AmiguinhosId int
+AS
+	DELETE FROM Amiguinhos
+	WHERE AmiguinhosId= @AmiguinhosId
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[DeletarEstado]
+	@EstadoId int
+AS
+	DELETE FROM Estados
+	WHERE EstadoId = @EstadoId
+RETURN 0
+GO
+
+
+
+CREATE PROCEDURE [dbo].[DeletarPais]
+	@PaisId int
+AS
+	DELETE FROM Pais
+	WHERE PaisId = @PaisId
+RETURN 0
+GO
+
+
+
+
+
+CREATE PROCEDURE [dbo].[Listadeeamiguinhos]
+	@Id int
+AS
+	SELECT * FROM Amiguinhos
+	WHERE Id = @Id
+RETURN 0
+GO
+
+
+CREATE PROCEDURE [dbo].[Listadeestados]
+	@PaisId int
+AS
+	SELECT * FROM Estados
+	WHERE PaisId = @PaisId
+RETURN 0

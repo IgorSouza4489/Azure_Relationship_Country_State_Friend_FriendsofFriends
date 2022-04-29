@@ -1,6 +1,6 @@
 # Azure_Relationship_Country_State_Friend_FriendsofFriends
 Exercício sobre relações utilizando FluentAPI e Procedimentos Armazenados (Abordagem Code First Entity Framework)<br>
-Uma pessoa têm vários amigos, cada pessoa é de um estado que faz parte de um país, cada país têm diversos estados.<br>
+Uma pessoa têm vários amigos, cada pessoa é de um estado que faz parte de um país, cada país têm diversos estados.<br><br>
 Os procedimentos armazenados se encontram em um arquivo .txt<br><br>
 
 ![relationfluentapi](https://user-images.githubusercontent.com/63150786/165874959-cd8dd94d-c7cb-481b-b56e-60e907a836da.png)

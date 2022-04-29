@@ -1,5 +1,5 @@
 # Azure_Relationship_Country_State_Friend_FriendsofFriends
-Exercício sobre relações utilizando FluentAPI (Abordagem Code First Entity Framework)
+Exercício sobre relações utilizando FluentAPI (Abordagem Code First Entity Framework)<br>
 Uma pessoa têm vários amigos, cada pessoa é de um estado que faz parte de um país, cada país têm diversos estados.
 
 ![listapessoas](https://user-images.githubusercontent.com/63150786/165874778-93ecad37-dfeb-4f68-9001-2c2e02036c3b.png)
